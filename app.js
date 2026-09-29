@@ -54,3 +54,166 @@ const portfolioData = {
         location: "Cusco, Perú"
     }
 };
+
+// ==========================================
+// 2. FUNCIONES DE RENDERIZADO
+// ==========================================
+
+function renderBasicInfo() {
+    const heroName = document.getElementById('hero-name');
+    const heroDesc = document.getElementById('hero-desc');
+    const aboutDesc = document.getElementById('about-desc');
+    
+    if (heroName) heroName.textContent = portfolioData.name;
+    if (heroDesc) heroDesc.textContent = portfolioData.description;
+    if (aboutDesc) aboutDesc.textContent = portfolioData.description;
+
+    const aboutInfoContainer = document.getElementById('about-info-container');
+    if (aboutInfoContainer) {
+        aboutInfoContainer.innerHTML = `
+            <div class="about-item">
+                <div class="label">📍 Ubicación</div>
+                <div class="value">${portfolioData.about.location}</div>
+            </div>
+            <div class="about-item">
+                <div class="label">📧 Email</div>
+                <div class="value">${portfolioData.about.email}</div>
+            </div>
+            <div class="about-item">
+                <div class="label">💼 Experiencia</div>
+                <div class="value">${portfolioData.about.experience}</div>
+            </div>
+            <div class="about-item">
+                <div class="label">✅ Disponibilidad</div>
+                <div class="value" style="color:#22c55e">${portfolioData.about.availability}</div>
+            </div>
+        `;
+    }
+}
+
+function renderProjects() {
+    const container = document.getElementById('projects-container');
+    if (!container) return;
+
+    let html = '';
+    portfolioData.projects.forEach(project => {
+        const tagsHTML = project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('');
+        html += `
+            <a href="${project.link}" class="card">
+                <img src="${project.image}" alt="${project.title}"/>
+                <div class="card-body">
+                    <h3 class="card-title">${project.title}</h3>
+                    <p class="card-text">${project.description}</p>
+                    <div>${tagsHTML}</div>
+                    <div style="margin-top:1rem; color:#2563eb; font-weight:500">Ver detalles →</div>
+                </div>
+            </a>
+        `;
+    });
+    container.innerHTML = html;
+}
+
+function renderSkills() {
+    const container = document.getElementById('skills-container');
+    if (!container) return;
+
+    let html = '';
+    portfolioData.skills.forEach(skill => {
+        html += `
+            <div class="skill-item">
+                <div class="skill-header">
+                    <span>${skill.name}</span>
+                    <span>${skill.level}%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width:${skill.level}%"></div>
+                </div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+}
+
+function renderContact() {
+    const container = document.getElementById('contact-info-container');
+    if (!container) return;
+
+    container.innerHTML = `
+        <h3>Información de Contacto</h3>
+        <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+                <div style="font-size:0.8rem; color:#6b7280">Email</div>
+                <div style="font-weight:600">${portfolioData.contact.email}</div>
+            </div>
+        </div>
+        <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+                <div style="font-size:0.8rem; color:#6b7280">Teléfono</div>
+                <div style="font-weight:600">${portfolioData.contact.phone}</div>
+            </div>
+        </div>
+        <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+                <div style="font-size:0.8rem; color:#6b7280">Ubicación</div>
+                <div style="font-weight:600">${portfolioData.contact.location}</div>
+            </div>
+        </div>
+    `;
+}
+
+// ==========================================
+// 3. INTERACTIVIDAD
+// ==========================================
+
+function setupMobileMenu() {
+    const btn = document.getElementById('mobile-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', () => menu.classList.toggle('open'));
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => menu.classList.remove('open'));
+    });
+}
+
+function setupForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        alert(`¡Gracias ${name}! Tu mensaje ha sido enviado (simulación).`);
+        form.reset();
+    });
+}
+
+function setupYear() {
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
+
+// ==========================================
+// 4. INICIALIZACIÓN
+// ==========================================
+
+function init() {
+    console.log("✅ Portafolio inicializado correctamente");
+    renderBasicInfo();
+    renderProjects();
+    renderSkills();
+    renderContact();
+    setupMobileMenu();
+    setupForm();
+    setupYear();
+}
+
+// Ejecuta cuando el DOM esté listo
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
