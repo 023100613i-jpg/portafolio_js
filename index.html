@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio</title>
+    <meta name="description" content="Portafolio de Astrit Fernanda Luza Grajeda">
+    <!-- Enlazamos nuestro CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Enlazamos nuestro JavaScript (con defer para que cargue después del HTML) -->
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <main>
+        <!-- NAVEGACIÓN -->
+        <nav class="navbar">
+            <span class="navbar-brand">Mi Portafolio</span>
+            <div class="nav-links">
+                <a href="#about">Sobre mí</a>
+                <a href="#projects">Proyectos</a>
+                <a href="#skills">Habilidades</a>
+                <a href="#contact">Contacto</a>
+            </div>
+            <button class="mobile-btn" id="mobile-btn" aria-label="Abrir menú">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" x2="20" y1="12" y2="12"></line>
+                    <line x1="4" x2="20" y1="6" y2="6"></line>
+                    <line x1="4" x2="20" y1="18" y2="18"></line>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- MENÚ MÓVIL (Oculto por defecto) -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#about">Sobre mí</a>
+            <a href="#projects">Proyectos</a>
+            <a href="#skills">Habilidades</a>
+            <a href="#contact">Contacto</a>
+        </div>
+
+        <!-- HERO SECTION -->
+        <header class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            Hola, Soy <br/>
+                            <span id="hero-name">Cargando...</span>
+                        </h1>
+                        <p class="hero-description" id="hero-desc">Cargando...</p>
+                        <div class="cta-group">
+                            <a href="#projects" class="btn-primary">Ver Proyectos</a>
+                            <a href="#contact" class="btn-secondary">Contáctame</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="image/foto-perfil.jpg" alt="Foto de perfil" style="border-radius:1rem; object-fit:cover; max-width:400px;">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- SOBRE MÍ -->
+        <section id="about" class="section section-white">
+            <div class="container">
+                <h2 class="section-title">Sobre Mí</h2>
+                <div class="section-underline"></div>
+                <div class="about-grid">
+                    <div class="about-image">
+                        <img src="image/foto-perfil.jpg" alt="Foto de perfil" style="border-radius:1rem; object-fit:cover; max-width:400px;">
+                    </div>
+                    <div>
+                        <p id="about-desc" style="font-size:1.1rem;color:#4a5568;line-height:1.8"></p>
+                        <div class="about-info" id="about-info-container">
+                            <!-- JS insertará los datos aquí -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROYECTOS -->
+        <section id="projects" class="section section-gray">
+            <div class="container">
+                <h2 class="section-title">Mis Proyectos</h2>
+                <div class="section-underline"></div>
+                <p class="section-subtitle">Explora algunos de mis proyectos más recientes donde he aplicado mis habilidades para crear soluciones innovadoras.</p>
+                <div class="grid-2" id="projects-container">
+                    <!-- JS insertará los proyectos aquí -->
+                </div>
+            </div>
+        </section>
+
+        <!-- HABILIDADES -->
+        <section id="skills" class="section section-white">
+            <div class="container">
+                <h2 class="section-title">Mis Habilidades</h2>
+                <div class="section-underline"></div>
+                <p class="section-subtitle">Tecnologías y herramientas con las que trabajo diariamente.</p>
+                <div class="skills-grid" id="skills-container">
+                    <!-- JS insertará las habilidades aquí -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="contact" class="section section-gray">
+            <div class="container">
+                <h2 class="section-title">Contacto</h2>
+                <div class="section-underline"></div>
+                <p class="section-subtitle">¿Tienes un proyecto en mente? ¡Me encantaría saber de ti!</p>
+                <div class="contact-grid">
+                    <div class="contact-info" id="contact-info-container">
+                        <!-- JS insertará la info de contacto aquí -->
+                    </div>
+                    <div class="contact-form">
+                        <h3>Envíame un mensaje</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" id="name" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="email" placeholder="tu@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Mensaje</label>
+                                <textarea id="message" rows="4" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-send">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span>© <span id="year"></span> Astrit Fernanda Luza Grajeda. Todos los derechos reservados.</span>
+                <div class="footer-links">
+                    <a href="https://github.com/023100613i" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="mailto:023100613i@uandina.edu.pe">Email</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>
